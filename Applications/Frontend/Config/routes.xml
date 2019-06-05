@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<routes>
+	<route url="/" controller="Pages" action="index" />
+
+	<!-- LES ROUTES DE FORMATION -->
+		<!-- Juste pour les test -->
+		<route url="/formation/test/?" controller="Formation" action="test" />
+
+		<!-- Utilisée pour la création d'une nouvelle formation -->
+		<route url="/formation/create/?" controller="Formation" action="createFormation" />
+
+		<!-- Utilisée pour la liée une formation à un type (Salle, online...) -->
+		<route url="/formation/createFormationType/?" controller="Formation" action="createFormationType" />
+
+		<!-- Utilisée pour la création d'un type de formation (Salle, online...)  -->
+		<route url="/formation/createType" controller="Formation" action="createType" />
+
+		<!-- Utilisée pour renvoyer les données d'une formation  -->
+		<route url="/formation/getFormation/([1-9]+[0-9]*)" controller="Formation" action="getFormation" vars="id_formation" />
+
+		<!-- Utilisée pour renvoyer les détails d'une formation  -->
+		<route url="/formation/getFormationDetail/([1-9]+[0-9]*)" controller="Formation" action="getFormationDetail" vars="id_formation" />
+	
+		<!-- Renvoi les session d'une formation -->
+		<route url="/formation/getSessionsFormation/([1-9]+[0-9]*)" controller="Formation" action="getSessionsFormation" vars="id_formation" />
+
+		<!-- Renvoi les formations bientôt partant d'une limite si c'est possible -->
+		<route url="/formation/getFormationsSoon/([1-9]+[0-9]*)" controller="Formation" action="getFormationsSoon" vars="limit" />
+
+		<!-- Renvoi toutes les formations bientôt sans limite -->
+		<route url="/formation/getFormationsSoon/?" controller="Formation" action="getFormationsSoon" />
+
+		<!-- Renvoi les formations futures avec une limite si nécessaire -->
+		<route url="/formation/getFormationsFeature/?([1-9]+[0-9]*)?" controller="Formation" action="getFormationsFeature" vars="limit" />
+
+		<!-- Renvoi le nombre de formation dans la base -->
+		<route url="/formation/getCountFormations/?" controller="Formation" action="getCountFormations" />
+
+		<!-- Renvoi les formations similaires d'une formation partant de l'id_sous_cat et id_formation -->
+		<route url="/formation/getFormationsSimilaires/([1-9]+[0-9]*)/([1-9]+[0-9]*)" controller="Formation" action="getFormationsSimilaires" vars="id_sous_cat,id_formation" />
+
+		<!-- Crée un frais de formation -->
+		<route url="/formation/createFrais/?" controller="Formation" action="createFrais" />
+
+		<!-- Renvoi les frais d'une formation par rapport à chaque type -->
+		<route url="/formation/getFraisFormation/([1-9]+[0-9]*)/([1-9]+[0-9]*)" controller="Formation" action="getFraisFormation" vars="id_formation,id_session" />
+
+		<!-- LES ROUTES DES SESSIONS -->
+		<route url="/formation/sessions/getAllSessions/([1-9]+[0-9]*)?/?" controller="SessionsFormations" action="getAllSessions" vars="limit" />
+		<route url="/formation/sessions/getSessionsProche/?([1-9]+[0-9]*)?/?" controller="SessionsFormations" action="getSessionsProche" vars="limit" />
+	<!-- FIN ROUTES FORMATION -->
+
+	<!-- LES ROUTES DES CATEGORIES ET LES SOUS CATEGORIES DE FORMATIONS -->
+		<!-- Permet de créer une catégorie de formation -->
+		<route url="/categorieFormation/create" controller="CategoriesFormation" action="createCategorie" />
+
+		<!-- Renvoi les détails d'une catégorie partant de son id -->
+		<route url="/categorieFormation/getCategorie/([1-9]+[0-9]*)" controller="CategoriesFormation" action="getCategorie" vars="id_cat" />
+
+		<!-- Renvoi toutes les catégories -->
+		<route url="/categorieFormation/getAllcategories" controller="CategoriesFormation" action="getAllcategories" />
+
+		<!-- Renvoi toutes les catégories mais avec une limit -->
+		<route url="/categorieFormation/getAllcategoriesByLimit/([1-9]+[0-9]*)" controller="CategoriesFormation" action="getAllcategories" vars="limit" />
+
+		<!-- Modifie une catégorie partant de son id -->
+		<route url="/categorieFormation/setCategorie/([1-9]+[0-9]*)" controller="CategoriesFormation" action="setCategorie" vars="id_cat" />
+
+		<!-- Permet de créer une sous catégorie de formation -->
+		<route url="/categorieFormation/sousCategorie/create" controller="CategoriesFormation" action="createSousCategorie" />
+
+		<!-- Renvoi les détails d'une sous catégorie partant de son id -->
+		<route url="/categorieFormation/getSousCategorie/([1-9]+[0-9]*)" controller="CategoriesFormation" action="getSousCategorie" vars="id_sous_cat" />
+
+		<!-- Renvoi les sous catégorie d'une catégorie dont l'id est passé en url -->
+		<route url="/categorieFormation/getSousCategoriesByCat/([1-9]+[0-9]*)" controller="CategoriesFormation" action="getSousCategoriesByCat" vars="id_cat" />
+
+		<!-- Renvoi toutes les catégories avec leurs sous catégories et leurs formations -->
+		<route url="/categorieFormation/getFull/?" controller="CategoriesFormation" action="getFull" />
+	<!-- FIN CATEGORIE ET SOUS CATEGORIE FORMATION -->
+	
+	<!-- LES ROUTES POUR LES PARTENAIRES (Ils nous font confiances) -->
+		<!-- Permet de créer un nouveau partenaire -->
+		<route url="/partenaires/create/?" controller="Partenaires" action="create" />
+
+		<!-- Renvoi tous les partenaires avec limite si nécessaire -->
+		<route url="/partenaires/getPartenaires/?([1-9]+[0-9]*)?" controller="Partenaires" action="getAllPartenaires" vars="limit" />
+	<!-- FIN PARTENAIRES -->
+
+	<!-- LES ROUTES CONCERNANT LES UTILISATEURS -->
+		<!-- L'inscription d'un utilisateur -->
+		<route url="/users/register" controller="users" action="register" />
+		<route url="/users/login" controller="users" action="login" />
+
+		<!-- Juste pour le test d'envoi de mail -->
+		<route url="/users/mail" controller="users" action="mail" />
+	<!-- FIN UTILISATEURS -->
+	
+	<!-- LES ROUTES POUR EMPLOI -->
+		<!-- Ajout d'un pays -->
+		<route url="/pays/add" controller="Pays" action="add" />
+
+		<!-- Trouve les jobs -->
+		<route url="/jobs/find" controller="Jobs" action="index" />
+
+		<!-- Trouves les compagnies -->
+		<route url="/compagnies/find" controller="Compagnies" action="index" />
+
+		<!-- Trouve les villes -->
+		<route url="/villes/find" controller="Villes" action="index" />
+	<!-- FIN EMPLOI -->
+</routes>

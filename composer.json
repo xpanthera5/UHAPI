@@ -1,0 +1,15 @@
+{
+	"autoload": {
+		"psr-4": {
+			"Core\\": "Core",
+			"Applications\\": "Applications",
+			"Config\\": "Config",
+			"Traits\\": "Traits",
+			"ZUpload\\": "Vendor/ZUpload"
+		}
+	},
+	"require": {
+		"swiftmailer/swiftmailer": "^6.2",
+		"zircote/swagger-php": "^3.0"
+	}
+}

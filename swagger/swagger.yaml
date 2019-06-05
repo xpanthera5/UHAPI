@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: 'API tutoriel'
+  version: 0.0.1
+servers:
+  -
+    url: 'http://api.tutorial.fr/v1'
+    description: 'Mon api'
+paths:
+  /posts:
+    get:
+      operationId: 'Core\ClassName::index'
+      responses:
+        '200':
+          description: 'Nos articles'
+          content:
+            application/json:
+              schema:
+                description: 'Titre du premier article'
+                type: string
