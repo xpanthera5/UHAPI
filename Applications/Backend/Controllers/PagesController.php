@@ -7,9 +7,9 @@
 	 */
 	class PagesController extends \Core\Controller
 	{
-		public function index()
+		public function index($req, $res)
 		{
-			$this->page->render();
+			$res->send(['nom' => 'moliso']);
 		}
 	}
 

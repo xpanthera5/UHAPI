@@ -95,6 +95,14 @@
 		<!-- Juste pour le test d'envoi de mail -->
 		<route url="/users/mail" controller="users" action="mail" />
 	<!-- FIN UTILISATEURS -->
+
+	<!-- LES ROUTES POUR LES ADMINS -->
+		<route url="/uhadmins/create" controller="Admins" action="createAdmin" />
+		<route url="/uhadmins/login" controller="Admins" action="login" />
+
+		<!-- Juste pour le test d'envoi de mail -->
+		<!-- <route url="/users/mail" controller="users" action="mail" /> -->
+	<!-- FIN UTILISATEURS -->
 	
 	<!-- LES ROUTES POUR EMPLOI -->
 		<!-- Ajout d'un pays -->
