@@ -1,18 +1,44 @@
 <?php
 	namespace Core;
-
+	
 	/**
-	 * Classe parente des entités représentant les tables
+	 * @OA\Schema(
+	 * 		schema="Entity",
+	 * 		description="Représente les entités de la base de donnée",
+	 * 		@OA\Property(type="integer", property="id"),
+	 * 		@OA\Property(type="string", property="etat"),
+	 * 		@OA\Property(type="array", property="errors", @OA\Items()),
+	 * 		@OA\Property(type="string", format="date-time", property="created")
+	 * )
 	 */
 	abstract class Entity
 	{
-		protected $errors = [],
-				  $id;
+		protected $id,
+				  $etat,
+				  $created,
+				  $errors = [];
 
 		public function __construct(array $datas = [])
 		{
 			if (!empty($datas)) {
 				$this->hydrate($datas);
+			}
+		}
+
+		/**
+		 * Permet d'hydrater les attributs de l'entité
+		 * @param {Array} $datas Les données à insérer
+		 * @return {void}
+		 */
+		public function hydrate(array $datas)
+		{
+			foreach ($datas as $attr => $value) {
+
+				$method = 'set'.ucfirst($attr);
+
+				if (is_callable([$this, $method])) {
+					$this->$method($value);
+				}
 			}
 		}
 
@@ -53,6 +79,34 @@
 		}
 
 		/**
+		 * Modifie le etat
+		 * @param {String} $etat L'état de l'utilisateur à ajouter
+		 * @return {void}
+		 */
+		public function setEtat($etat)
+		{
+			if (!is_int($etat) || ($etat > 1 && $etat < 0) ) {
+				$this->errors[] = 'Etat invalide';
+			}else {
+				$this->etat = $etat;
+			}
+		}
+
+		/**
+		 * Modifie le created
+		 * @param {String} $created Le created de l'utilisateur à ajouter
+		 * @return {void}
+		 */
+		public function setCreated(DateTime $created)
+		{
+			if (!is_int($created) || ($created > 1 && $created < 0) ) {
+				$this->errors[] = 'Date création invalide';
+			}else {
+				$this->etat = $etat;
+			}
+		}
+
+		/**
 		 * Renvoi l'id de l'entité
 		 * @return {*} $id
 		 */
@@ -61,20 +115,13 @@
 			return $this->id;
 		}
 
-		/**
-		 * Permet d'hydrater les attributs de l'entité
-		 * @param {Array} $datas Les données à insérer
-		 * @return {void}
-		 */
-		public function hydrate(array $datas)
+		public function etat()
 		{
-			foreach ($datas as $attr => $value) {
+			return $this->etat;
+		}
 
-				$method = 'set'.ucfirst($attr);
-
-				if (is_callable([$this, $method])) {
-					$this->$method($value);
-				}
-			}
+		public function created()
+		{
+			return $this->created;
 		}
 	}

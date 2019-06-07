@@ -3,6 +3,8 @@
 
 	use \Core\Controller;
 	use Applications\Frontend\Models\Entities\UsersEntity;
+	use OpenApi\Annotations AS OA;
+	
 
 	/**
 	 * Gère les utilisateurs
@@ -14,13 +16,7 @@
 			$res->send(['nom' => 'moliso']);
 		}
 
-		/**
-		 * L'inscription d'un nouvel utilisateur
-		 * @see \Core\Request
-		 * @see \Core\Response
-		 * @param {Request} $req
-		 * @param {Response} $res
-		 */
+		
 		public function register($req, $res)
 		{
 			if ($req->bodyNotEmpty(['email', 'nom', 'prenom', 'password'])) {

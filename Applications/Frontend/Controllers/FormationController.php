@@ -1,6 +1,8 @@
 <?php
 	namespace Applications\Frontend\Controllers;
 
+	use OpenApi\Annotations AS OA;
+
 	/**
 	 * Controller gérant les formations
 	 */
@@ -151,9 +153,21 @@
 		}
 
 		/**
-		 * Permet de renvoyer une formation
-		 * @param {Request} $req
-		 * @param {Response} $res
+		 * @OA\Get(
+		 * 		path="/formation/getFormation/{id_formation}",
+		 * 		@OA\Parameter(
+		 * 			name="id_formation",
+		 * 			in="path",
+		 * 			description="L'identifiant de la formation",
+		 * 			required=true,
+		 * 			@OA\Schema(type="integer")
+		 * 		),
+		 * 		@OA\Response(
+		 * 			response="200",
+		 * 			description="Renvoi les informations d'une formation",
+		 * 			@OA\JsonContent()
+		 * 		)
+		 * )
 		 */
 		public function getFormation($req, $res)
 		{

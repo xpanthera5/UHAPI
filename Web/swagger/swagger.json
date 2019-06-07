@@ -1,0 +1,94 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API UHTEC Training",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://uhapi.com:8080",
+            "description": "L'API du WEBSITE de l'UHTEC Training"
+        }
+    ],
+    "paths": {
+        "/formation/getFormation/{id_formation}": {
+            "get": {
+                "operationId": "Applications\\Frontend\\Controllers\\FormationController::getFormation",
+                "parameters": [
+                    {
+                        "name": "id_formation",
+                        "in": "path",
+                        "description": "L'identifiant de la formation",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Renvoi les informations d'une formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Entity": {
+                "description": "Représente les entités de la base de donnée",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "etat": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "created": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "UsersEntity": {
+                "description": "Représente l'entité utilisateurs",
+                "properties": {
+                    "nom": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "postnom": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "telephone": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Entity"
+                    }
+                ]
+            }
+        }
+    }
+}

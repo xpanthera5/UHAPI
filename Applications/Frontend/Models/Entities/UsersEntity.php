@@ -2,18 +2,27 @@
 	namespace Applications\Frontend\Models\Entities;
 
 	use \Core\Entity;
+	use OpenApi\Annotations AS OA;
 
 	/**
-	 * Classe représentant l'entité users
+	 * @OA\Schema(
+	 * 		schema="UsersEntity",
+	 * 		description="Représente l'entité utilisateurs",
+	 * 		allOf={@OA\Schema(ref="#/components/schemas/Entity")},
+	 * 		@OA\Property(type="string", property="nom"),
+	 * 		@OA\Property(type="string", property="email"),
+	 * 		@OA\Property(type="string", property="prenom"),
+	 * 		@OA\Property(type="string", property="postnom"),
+	 * 		@OA\Property(type="string", property="password"),
+	 * 		@OA\Property(type="string", property="telephone"),
+	 * )
 	 */
 	class UsersEntity extends Entity
 	{
 		protected $nom,
-				  $etat,
 				  $email,
 				  $prenom,
 				  $postnom,
-				  $created,
 				  $password,
 				  $telephone;
 
@@ -121,34 +130,6 @@
 			$this->password = $password;
 		}
 
-		/**
-		 * Modifie le etat
-		 * @param {String} $etat L'état de l'utilisateur à ajouter
-		 * @return {void}
-		 */
-		public function setEtat($etat)
-		{
-			if (!is_int($etat) || ($etat > 1 && $etat < 0) ) {
-				$this->errors[] = 'Etat invalide';
-			}else {
-				$this->etat = $etat;
-			}
-		}
-
-		/**
-		 * Modifie le created
-		 * @param {String} $created Le created de l'utilisateur à ajouter
-		 * @return {void}
-		 */
-		public function setCreated(DateTime $created)
-		{
-			if (!is_int($created) || ($created > 1 && $created < 0) ) {
-				$this->errors[] = 'Date création invalide';
-			}else {
-				$this->etat = $etat;
-			}
-		}
-
 		// LES GETTERS //
 
 		public function nom()
@@ -164,16 +145,6 @@
 		public function prenom()
 		{
 			return $this->prenom;
-		}
-
-		public function etat()
-		{
-			return $this->etat;
-		}
-
-		public function created()
-		{
-			return $this->created;
 		}
 
 		public function email()

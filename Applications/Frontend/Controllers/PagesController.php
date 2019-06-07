@@ -1,17 +1,28 @@
 <?php 
 	namespace Applications\Frontend\Controllers;
 
+	use OpenApi\Annotations AS OA;
+
 	/**
-	 * Utilisé pour certains fichiers qui n'ont pas de catégorie
-	 * comme des fichiers pour l'accueil
+	 * @OA\Parameter(
+	 * 		name="id",
+	 * 		description="ID de la source",
+	 * 		required=true,
+	 * 		@OA\Schema(type="integer")
+	 * )
+	 * 
+	 * @OA\Response(
+	 * 		response="NotFound",
+	 * 		description="La source n'existe",
+	 * 		@OA\JsonContent(
+	 * 			@OA\Property(property="message", type="string")
+	 * 		)
+	 * )
 	 */
 	class PagesController extends \Core\Controller
 	{
 		public function index($req, $res)
 		{
-			// $res->render('pages/index', [
-			// 	'title' => 'Bienvenue sur ' . WEBSITE_NAME
-			// ]);
 			$res->send(['nom' => 'moliso']);
 		}
 	}
