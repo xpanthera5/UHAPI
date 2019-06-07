@@ -11,6 +11,13 @@
 	 * 		@OA\Schema(type="integer")
 	 * )
 	 * 
+	 * @OA\Parameter(
+	 * 		name="limit",
+	 * 		description="La limite des données à renvoyer",
+	 * 		required=false,
+	 * 		@OA\Schema(type="integer")
+	 * )
+	 * 
 	 * @OA\Response(
 	 * 		response="NotFound",
 	 * 		description="La source n'existe",

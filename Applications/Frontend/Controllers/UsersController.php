@@ -16,7 +16,9 @@
 			$res->send(['nom' => 'moliso']);
 		}
 
-		
+		/**
+		 * @OA\Post
+		 */
 		public function register($req, $res)
 		{
 			if ($req->bodyNotEmpty(['email', 'nom', 'prenom', 'password'])) {
